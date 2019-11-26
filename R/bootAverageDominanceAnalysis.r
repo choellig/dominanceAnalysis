@@ -5,7 +5,7 @@
 #'
 #' Use \code{summary()} to get a nice formatted \code{data.frame} object.
 #'
-#' @param object lm, glm or lmer model
+#' @param object lm, felm, glm or lmer model
 #' @param R number on bootstrap resamples
 #' @param constants vector of predictors to remain unchanged between models.
 #'                  i.e. vector of variables not subjected to bootstrap analysis.
