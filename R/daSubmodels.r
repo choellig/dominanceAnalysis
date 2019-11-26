@@ -2,7 +2,7 @@
 #'
 #' You could set some variables as constants, limiting the number of models.
 #' Includes, by default, the null model
-#' @param x regression class (lm or lmer)
+#' @param x regression class (lm, felm or lmer)
 #' @param constants vector of constants
 #' @param terms     vector of terms. By default, obtained using the formula
 #' @return list with elements level, pred.matrix, predictors, response, constants
