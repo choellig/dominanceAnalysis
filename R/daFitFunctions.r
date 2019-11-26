@@ -45,6 +45,32 @@ da.lm.fit<-function(data,...) {
 	}
 }
 
+#' Provides coefficient of determination for \code{felm} models.
+#'
+#' Uses \eqn{R^2} (coefficient of determination) as fit index
+#' @param data complete data set containing the variables in the model
+#' @param ... ignored
+#' @return A function described by \link{using-fit-indices} description for interface
+#' @export
+#' @family fit indices
+#' @importFrom stats felm
+#' @examples
+#' x1<-rnorm(1000)
+#' x2<-rnorm(1000)
+#' y <-x1+x2+rnorm(1000)
+#' df.1=data.frame(y=y,x1=x1,x2=x2)
+#' da.felm.fit(df.1)("names")
+#' da.felm.fit(df.1)(y~x1)
+da.felm.fit<-function(data,...) {
+  mc=match.call()
+  function(x) {
+  	if(x=="names") {
+  		return("r2")
+  	}
+	 list(r2=summary(felm(x, data=data))$r.squared)
+	}
+}
+
 #' Provides fit indices for GLM models.
 #'
 #' Functions only available for logistic regression, based on Azen and Traxel(2009).
@@ -113,6 +139,7 @@ da.glm.fit<-function(data,family.glm,...) {
 	}
 
 }
+
 #' Provides fit indices for hierarchical linear models, based on Luo and Azen (2013).
 #'
 #' @param data complete data set containing the variables in the model
@@ -125,7 +152,6 @@ da.glm.fit<-function(data,family.glm,...) {
 #' @inheritParams using-fit-indices
 #' @family fit indices
 #' @export
-
 da.lmerMod.fit<-function(data, null.model, ...) {
   if (!requireNamespace("lme4", quietly = TRUE)) { #nocov start
     stop("lme4 needed for this function to work. Please install it.",
