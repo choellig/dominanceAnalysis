@@ -5,7 +5,7 @@
 #'
 #' @section Main Features:
 #' \itemize{
-#' \item Provides complete, conditional and general dominance analysis for lm (univariate and multivariate), lmer and glm (family=binomial) models.
+#' \item Provides complete, conditional and general dominance analysis for lm (univariate and multivariate) felm (univariate and multivariate), lmer and glm (family=binomial) models.
 #' \item Covariance / correlation matrixes could be used as input for OLS dominance analysis, using \code{\link{lmWithCov}} and \code{\link{mlmWithCov}} methods, respectively.
 #' \item Multiple criteria can be used as fit indices, which is useful especially for HLM.
 #' }
@@ -42,6 +42,17 @@
 #' data(longley)
 #' lm.1<-lm(Employed~.,longley)
 #' da<-dominanceAnalysis(lm.1)
+#' print(da)
+#' summary(da)
+#' plot(da,which.graph='complete')
+#' plot(da,which.graph='conditional')
+#' plot(da,which.graph='general')
+#'
+#' # Basic dominance analysis (with felm)
+#'
+#' data(longley)
+#' felm.1<-felm(Employed~.,longley)
+#' da<-dominanceAnalysis(felm.1)
 #' print(da)
 #' summary(da)
 #' plot(da,which.graph='complete')
