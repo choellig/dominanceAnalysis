@@ -31,6 +31,17 @@ getData<-function(x) {
     }
   } else if(is(x,"lmerMod")) {
 		data=x@frame
+  } else if(is(x,"felm")) {
+
+    if(!is.null(x$call$data)) {
+      #print(where(as.character(x$call$data)))
+      data=get(as.character(x$call$data))
+	  } else {
+      data=x$model
+    }
+    if(is.null(data)) {
+      stop("Can't get data")
+    }
   }
   data;
 }
